@@ -1,0 +1,42 @@
+﻿@page "/flota"
+@using RentCar.Entities.Cars
+@using RentCar.Services
+@inject ICarService _service
+
+<PageTitle>Flota</PageTitle>
+
+@if (cars.Any())
+{
+    <table class="table">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach(var car in cars)
+    {
+        <tr>
+            <td>@car.Id</td>
+            <td>@car.Name</td>
+            <td><button class="btn btn-primary">Rent</button></td>
+        </tr>
+    }
+    </tbody>
+    </table>
+}
+else
+{
+    <p><em>Loading Flota</em></p>
+}
+
+@code {
+    private List<Car> cars { get; set; } = new();
+
+    protected override async Task OnInitializedAsync()
+    {
+        var result = await _service.GetCarsAsync();
+        cars = result.ToList();
+    }
+}

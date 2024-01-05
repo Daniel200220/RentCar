@@ -1,0 +1,55 @@
+﻿@using RentCar.Entities.Cars
+@inherits Microsoft.AspNetCore.Components.ComponentBase
+
+
+<div class="car-card">
+    <img src="@Car.ImageUrl" alt="@Car.Id" class="car-image" />
+    <div class="car-details">
+        <h3>@Car.Name</h3>
+        <p>@Car.Description</p>
+        <button class="btn-rent" @onclick="RentClicked">Rent</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public Car Car { get; set; }
+
+    private void RentClicked()
+    {
+    // Handle rent button click event
+    // You can implement your logic here
+    // For example, you can navigate to a rent page or show a modal
+        Console.WriteLine($"Rent button clicked for {Car.Name}");
+    }
+}
+
+<style>
+    .car-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 16px;
+        margin: 16px;
+        max-width: 300px;
+        text-align: center;
+    }
+
+    .car-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .car-details {
+        margin-top: 12px;
+    }
+
+    .btn-rent {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+</style>
